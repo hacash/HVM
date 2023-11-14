@@ -13,7 +13,7 @@ type Div struct {
 }
 
 func (s *Div) Type() uint16 {
-	return 65526
+	return 65524
 }
 
 func (s *Div) IsBurning90PersentTxFees() bool {

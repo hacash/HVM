@@ -12,7 +12,7 @@ type Add struct {
 }
 
 func (s *Add) Type() uint16 {
-	return 65529
+	return 65521
 }
 
 func (s *Add) IsBurning90PersentTxFees() bool {

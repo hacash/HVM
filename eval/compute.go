@@ -6,8 +6,7 @@ import (
 	"math/big"
 )
 
-func ComputeLeftRight(ctx trait.Context, l, r trait.ASTNode) (trait.EvalResult, *big.Int, *big.Int) {
-
+func EvalLeftRight(ctx trait.Context, l, r trait.ASTNode) (trait.EvalResult, trait.EvalResult, trait.EvalResult) {
 	var lv = l.Evaluate(ctx)
 	if lv.CheckInterrupt() {
 		return lv, nil, nil
@@ -15,6 +14,14 @@ func ComputeLeftRight(ctx trait.Context, l, r trait.ASTNode) (trait.EvalResult, 
 	var rv = r.Evaluate(ctx)
 	if rv.CheckInterrupt() {
 		return lv, nil, nil
+	}
+	return nil, lv, rv
+}
+
+func ComputeLeftRight(ctx trait.Context, l, r trait.ASTNode) (trait.EvalResult, *big.Int, *big.Int) {
+	var fte, lv, rv = EvalLeftRight(ctx, l, r)
+	if fte != nil {
+		return fte, nil, nil
 	}
 	var ln = big.NewInt(0)
 	if lv.IsTrue() {

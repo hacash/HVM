@@ -12,7 +12,7 @@ type Mul struct {
 }
 
 func (s *Mul) Type() uint16 {
-	return 65527
+	return 65523
 }
 
 func (s *Mul) IsBurning90PersentTxFees() bool {

@@ -39,7 +39,16 @@ func (s *Loop) Evaluate(ctx trait.Context) trait.EvalResult {
 		// do loop
 		var bv = s.Eval.Evaluate(ctx)
 		if bv.CheckInterrupt() {
-			return bv // break, return or fatal
+			var ty = bv.EventType()
+			if ty == eval.ResultEventTypeLoopBreak {
+				//break
+				bv.CleanEvent()
+				return bv
+			} else if ty == eval.ResultEventTypeLoopContinue {
+				continue
+			}
+			// func return or fatal
+			return bv
 		}
 	}
 }

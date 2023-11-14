@@ -9,11 +9,26 @@ import (
 const ResultEventTypeFatal uint8 = 1
 const ResultEventTypeFunctionReturn uint8 = 2
 const ResultEventTypeLoopBreak uint8 = 3
+const ResultEventTypeLoopContinue uint8 = 4
 
 type ResultObj struct {
-	eventTy  uint8 // 0: normal   1: fatal panic   2: func return   3: loop break
+	/* 0: normal
+	// 1: fatal panic
+	// 2: func return
+	// 3: loop break
+	// 4: loop continue
+	*/
+	eventTy  uint8
 	fatalErr error
 	retValue []byte
+}
+
+func (r *ResultObj) CleanEvent() {
+	r.eventTy = 0 // reset
+}
+
+func (r *ResultObj) EventType() uint8 {
+	return r.eventTy
 }
 
 func (r *ResultObj) FatalErr() error {
@@ -119,7 +134,7 @@ func ResultFalse() trait.EvalResult {
 	}
 }
 
-func ResultOK() trait.EvalResult {
+func ResultTrue() trait.EvalResult {
 	return &ResultObj{
 		0,
 		nil,

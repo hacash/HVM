@@ -5,6 +5,8 @@ type EvalResult interface {
 	RetValue() []byte
 	IsTrue() bool
 	CheckInterrupt() bool
+	EventType() uint8
+	CleanEvent()
 }
 
 type ASTNode interface {

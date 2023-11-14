@@ -12,7 +12,7 @@ type Sub struct {
 }
 
 func (s *Sub) Type() uint16 {
-	return 65528
+	return 65522
 }
 
 func (s *Sub) IsBurning90PersentTxFees() bool {
