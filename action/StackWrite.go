@@ -13,8 +13,8 @@ type StackWrite struct {
 	Data trait.VMAction
 }
 
-func (s *StackWrite) Type() uint16 {
-	return 65519
+func (s *StackWrite) VMKind() uint8 {
+	return 18
 }
 
 func (s *StackWrite) IsBurning90PersentTxFees() bool {
@@ -50,6 +50,6 @@ func (s *StackWrite) Evaluate(ctx trait.Context) trait.EvalResult {
 	if e != nil {
 		return eval.ResultFatalErr(e) // stackoverflow
 	}
-	// ok return true
-	return eval.ResultTrue()
+	// ok return value
+	return eval.ResultValue(dts)
 }

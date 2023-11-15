@@ -11,8 +11,8 @@ type Add struct {
 	Right trait.VMAction
 }
 
-func (s *Add) Type() uint16 {
-	return 65521
+func (s *Add) VMKind() uint8 {
+	return 21
 }
 
 func (s *Add) IsBurning90PersentTxFees() bool {

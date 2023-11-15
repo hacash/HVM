@@ -9,12 +9,12 @@ type Break struct {
 	Value trait.VMAction
 }
 
-func (s *Break) Type() uint16 {
-	return 65530
+func (s *Break) VMKind() uint8 {
+	return 30
 }
 
 func (s *Break) IsBurning90PersentTxFees() bool {
-	return false
+	return true
 }
 
 func (s *Break) ChildActions() []trait.VMAction {

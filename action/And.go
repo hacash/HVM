@@ -10,8 +10,8 @@ type And struct {
 	Right trait.VMAction
 }
 
-func (s *And) Type() uint16 {
-	return 65528
+func (s *And) VMKind() uint8 {
+	return 28
 }
 
 func (s *And) IsBurning90PersentTxFees() bool {

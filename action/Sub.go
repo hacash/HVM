@@ -11,8 +11,8 @@ type Sub struct {
 	Right trait.VMAction
 }
 
-func (s *Sub) Type() uint16 {
-	return 65522
+func (s *Sub) VMKind() uint8 {
+	return 22
 }
 
 func (s *Sub) IsBurning90PersentTxFees() bool {

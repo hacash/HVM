@@ -10,12 +10,12 @@ type Loop struct {
 	Eval trait.VMAction
 }
 
-func (s *Loop) Type() uint16 {
-	return 65531
+func (s *Loop) VMKind() uint8 {
+	return 31
 }
 
 func (s *Loop) IsBurning90PersentTxFees() bool {
-	return false
+	return true
 }
 
 func (s *Loop) ChildActions() []trait.VMAction {

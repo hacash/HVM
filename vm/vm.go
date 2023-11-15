@@ -11,6 +11,7 @@ type HacashVM struct {
 	cnf   *config.VMConfig
 	stack *stack.VMStack
 	heap  *heap.VMHeap
+	extca trait.ExtendCallExecutor
 }
 
 func NewHacashVM(cnf *config.VMConfig) *HacashVM {
@@ -20,12 +21,4 @@ func NewHacashVM(cnf *config.VMConfig) *HacashVM {
 		stack: stack.NewVMStack(),
 		heap:  heap.NewVMHeap(),
 	}
-}
-
-func (vm *HacashVM) GetStack() trait.Stack {
-	return vm.stack
-}
-
-func (vm *HacashVM) GetHeap() trait.Heap {
-	return vm.heap
 }

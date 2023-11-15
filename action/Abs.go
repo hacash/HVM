@@ -10,8 +10,8 @@ type Abs struct {
 	Numv trait.VMAction
 }
 
-func (s *Abs) Type() uint16 {
-	return 65526
+func (s *Abs) VMKind() uint8 {
+	return 26
 }
 
 func (s *Abs) IsBurning90PersentTxFees() bool {

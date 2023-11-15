@@ -8,8 +8,8 @@ type ConditionalBranch struct {
 	FalseBranch trait.VMAction
 }
 
-func (s *ConditionalBranch) Kind() uint16 {
-	return 65532
+func (s *ConditionalBranch) VMKind() uint8 {
+	return 32
 }
 
 func (s *ConditionalBranch) IsBurning90PersentTxFees() bool {

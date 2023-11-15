@@ -9,8 +9,8 @@ type Not struct {
 	Numv trait.VMAction
 }
 
-func (s *Not) Type() uint16 {
-	return 65530
+func (s *Not) VMKind() uint8 {
+	return 30
 }
 
 func (s *Not) IsBurning90PersentTxFees() bool {

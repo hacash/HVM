@@ -14,8 +14,8 @@ type Sequential struct {
 	Lists       []trait.VMAction
 }
 
-func (s *Sequential) Kind() uint16 {
-	return 65533
+func (s *Sequential) VMKind() uint8 {
+	return 33
 }
 
 func (s *Sequential) IsBurning90PersentTxFees() bool {

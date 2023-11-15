@@ -12,8 +12,8 @@ type Div struct {
 	Right trait.VMAction
 }
 
-func (s *Div) Type() uint16 {
-	return 65524
+func (s *Div) VMKind() uint8 {
+	return 24
 }
 
 func (s *Div) IsBurning90PersentTxFees() bool {

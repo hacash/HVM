@@ -11,8 +11,8 @@ type StackLoad struct {
 	Ptrv trait.VMAction
 }
 
-func (s *StackLoad) Type() uint16 {
-	return 65520
+func (s *StackLoad) VMKind() uint8 {
+	return 19
 }
 
 func (s *StackLoad) IsBurning90PersentTxFees() bool {

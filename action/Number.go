@@ -12,8 +12,8 @@ type Number struct {
 	vbts []byte
 }
 
-func (s *Number) Type() uint16 {
-	return 65525
+func (s *Number) VMKind() uint8 {
+	return 25
 }
 
 func (s *Number) IsBurning90PersentTxFees() bool {

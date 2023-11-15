@@ -11,8 +11,8 @@ type Mul struct {
 	Right trait.VMAction
 }
 
-func (s *Mul) Type() uint16 {
-	return 65523
+func (s *Mul) VMKind() uint8 {
+	return 23
 }
 
 func (s *Mul) IsBurning90PersentTxFees() bool {

@@ -11,5 +11,5 @@ type EvalResult interface {
 
 type ASTNode interface {
 	Evaluate(Context) EvalResult
-	Childs() []ASTNode
+	//Childs() []ASTNode
 }

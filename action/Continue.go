@@ -8,12 +8,12 @@ import (
 type Continue struct {
 }
 
-func (s *Continue) Type() uint16 {
-	return 65529
+func (s *Continue) VMKind() uint8 {
+	return 29
 }
 
 func (s *Continue) IsBurning90PersentTxFees() bool {
-	return false
+	return true
 }
 
 func (s *Continue) ChildActions() []trait.VMAction {

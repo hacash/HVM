@@ -8,8 +8,8 @@ import (
 type Null struct {
 }
 
-func (s *Null) Type() uint16 {
-	return 65535
+func (s *Null) VMKind() uint8 {
+	return 35
 }
 
 func (s *Null) IsBurning90PersentTxFees() bool {

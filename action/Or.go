@@ -10,8 +10,8 @@ type Or struct {
 	Right trait.VMAction
 }
 
-func (s *Or) Type() uint16 {
-	return 65529
+func (s *Or) VMKind() uint8 {
+	return 29
 }
 
 func (s *Or) IsBurning90PersentTxFees() bool {

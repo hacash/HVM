@@ -11,8 +11,8 @@ type Mod struct {
 	Base trait.VMAction
 }
 
-func (s *Mod) Type() uint16 {
-	return 65525
+func (s *Mod) VMKind() uint8 {
+	return 25
 }
 
 func (s *Mod) IsBurning90PersentTxFees() bool {
