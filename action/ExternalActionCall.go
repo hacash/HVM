@@ -8,31 +8,31 @@ import (
 
 /********** Static **********/
 
-type StaticExternalActionCaller struct {
+type StaticExternalActionCall struct {
 	ExternalAction trait.VMAction
 }
 
-func (elm StaticExternalActionCaller) VMKind() uint8 {
+func (elm StaticExternalActionCall) VMKind() uint8 {
 	return 0
 }
 
-func (elm StaticExternalActionCaller) IsBurning90PersentTxFees() bool {
+func (elm StaticExternalActionCall) IsBurning90PersentTxFees() bool {
 	return false
 }
 
-func (s *StaticExternalActionCaller) Parse(extca trait.ExtendCallExecutor, buf []byte, seek uint32) (uint32, error) {
-	panic(any("Never call StaticExternalActionCaller.Parse"))
+func (s *StaticExternalActionCall) Parse(extca trait.ExtendCallExecutor, buf []byte, seek uint32) (uint32, error) {
+	panic(any("Never call StaticExternalActionCall.Parse"))
 }
 
-func (elm StaticExternalActionCaller) ChildActions() []trait.VMAction {
+func (elm StaticExternalActionCall) ChildActions() []trait.VMAction {
 	return []trait.VMAction{elm.ExternalAction}
 }
 
-func (elm StaticExternalActionCaller) Childs() []trait.ASTNode {
+func (elm StaticExternalActionCall) Childs() []trait.ASTNode {
 	return []trait.ASTNode{elm.ExternalAction}
 }
 
-func (elm StaticExternalActionCaller) Evaluate(ctx trait.Context) trait.EvalResult {
+func (elm StaticExternalActionCall) Evaluate(ctx trait.Context) trait.EvalResult {
 	// check
 	var exec = ctx.GetExtendCallExecutor()
 	var evmk = elm.ExternalAction.VMKind()
@@ -50,27 +50,31 @@ func (elm StaticExternalActionCaller) Evaluate(ctx trait.Context) trait.EvalResu
 
 /********** Dynamic **********/
 
-type DynamicExternalActionCaller struct {
+type DynamicExternalActionCall struct {
 	ActionOverallData trait.VMAction
 }
 
-func (elm DynamicExternalActionCaller) VMKind() uint8 {
-	return 11
+func (elm DynamicExternalActionCall) VMKind() uint8 {
+	return 254
 }
 
-func (elm DynamicExternalActionCaller) IsBurning90PersentTxFees() bool {
-	return false
+func (elm DynamicExternalActionCall) IsBurning90PersentTxFees() bool {
+	return true
 }
 
-func (elm DynamicExternalActionCaller) ChildActions() []trait.VMAction {
+func (elm DynamicExternalActionCall) ChildActions() []trait.VMAction {
 	return []trait.VMAction{elm.ActionOverallData}
 }
 
-func (elm DynamicExternalActionCaller) Childs() []trait.ASTNode {
+/* func (elm DynamicExternalActionCall) Childs() []trait.ASTNode {
 	return []trait.ASTNode{elm.ActionOverallData}
+} */
+
+func (s *DynamicExternalActionCall) Parse(extca trait.ExtendCallExecutor, buf []byte, seek uint32) (uint32, error) {
+	return 0, nil
 }
 
-func (elm DynamicExternalActionCaller) Evaluate(ctx trait.Context) trait.EvalResult {
+func (elm DynamicExternalActionCall) Evaluate(ctx trait.Context) trait.EvalResult {
 	var exec = ctx.GetExtendCallExecutor()
 	var actdts = elm.ActionOverallData.Evaluate(ctx)
 	if actdts.CheckInterrupt() {

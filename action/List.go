@@ -13,7 +13,7 @@ type List struct {
 }
 
 func (s *List) VMKind() uint8 {
-	return 255
+	return 254
 }
 
 func (s *List) IsBurning90PersentTxFees() bool {
@@ -30,7 +30,7 @@ func (s *List) Parse(extca trait.ExtendCallExecutor, buf []byte, seek uint32) (u
 	var count = int(s.Count)
 	s.Lists = make([]trait.VMAction, count)
 	for i := 0; i < count; i++ {
-		act, skn, e = ParseVMAction(extca, buf, skn)
+		act, skn, e = ParseAction(extca, buf, skn)
 		if e != nil {
 			return 0, e
 		}

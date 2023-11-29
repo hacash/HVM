@@ -12,6 +12,10 @@ func allocVMStack(base *VMStack, seg_size int, is_read_only bool) (*VMStack, err
 	if seg_size < 1 {
 		return nil, fmt.Errorf("Stack seg_size cannot less than 1")
 	}
+	if seg_size > STACK_FUNC_ITEM_LENGTH {
+		return nil, fmt.Errorf("Sub Stack seg_size %d cannot more than %d",
+			seg_size, STACK_ITEM_MAX_SIZE)
+	}
 	var new_start = base.seg_end
 	var new_end = new_start + seg_size
 	if new_end >= STACK_TOTAL_LENGTH {

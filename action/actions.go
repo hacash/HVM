@@ -5,11 +5,15 @@ import (
 	"github.com/hacash/HVM/trait"
 )
 
-func ParseAction(extca trait.ExtendCallExecutor, buf []byte, seek uint32) (trait.VMAction, uint32, error) {
+func ParseVMAction(extca trait.ExtendCallExecutor, buf []byte, seek uint32) (trait.VMAction, uint32, error) {
 	var k = buf[seek]
 	var act trait.VMAction = nil
 	switch k {
-	case 255:
+	//case 255:
+	//	act = &ContractInvoke{}
+	//case 254:
+	//	act = &DynamicExternalActionCall{}
+	case 200:
 		act = &List{}
 	}
 	if act == nil {
@@ -24,7 +28,7 @@ func ParseAction(extca trait.ExtendCallExecutor, buf []byte, seek uint32) (trait
 	return act, seek2, nil
 }
 
-func ParseVMAction(extca trait.ExtendCallExecutor, buf []byte, seek uint32) (trait.VMAction, uint32, error) {
+func ParseAction(extca trait.ExtendCallExecutor, buf []byte, seek uint32) (trait.VMAction, uint32, error) {
 	var kdmx = extca.ExtendKindRange()
 	var vk = buf[seek]
 	if vk <= kdmx {
@@ -34,8 +38,8 @@ func ParseVMAction(extca trait.ExtendCallExecutor, buf []byte, seek uint32) (tra
 			return nil, 0, e
 		}
 		// ok
-		return &StaticExternalActionCaller{act}, sk, nil
+		return &StaticExternalActionCall{act}, sk, nil
 	}
 	// try vm action
-	return ParseAction(extca, buf, seek)
+	return ParseVMAction(extca, buf, seek)
 }
